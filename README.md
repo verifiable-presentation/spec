@@ -1,2 +1,2 @@
-# vp
-Verifiable Presentations 
+# Verifiable Presentations
+
