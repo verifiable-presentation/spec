@@ -1,2 +1,0 @@
-# Verifiable Presentations
-
