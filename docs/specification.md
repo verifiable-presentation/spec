@@ -181,7 +181,7 @@ _Template Not Found_
 
 | Field    | Type     | Required | Notes                                                                                                    |
 | -------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
-| template | `string` | `true`   | The ID of the template to use to render the data.                                                        |
+| template | `string` | `true`   | The template to use to render the data.                                                                  |
 | data     | `object` | `true`   | The data to render.                                                                                      |
 | output   | `enum`   | `true`   | The format in which to output the presentation. Can be one of the following: `svg`, `pdf`, `txt`, `htm`. |
 
@@ -189,7 +189,7 @@ Example:
 
 ```json
 {
-	"template": "PTqVo635KbGZXZ4KzUJV86iBpixt",
+	"template": "Hello ${data.name}",
 	"data": {
 		"name": "Happy"
 	},
