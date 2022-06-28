@@ -1,7 +1,7 @@
 # Verifiable Presentation Generation Service Specification
 
 > A plugin-based service that allows issuers to render verifiable presentations
-> from templates, and store it in a queryable database for clients to
+> from templates, and store it in a queryable database for holders to
 > list/retrieve.
 
 ## Terms and Definitions
