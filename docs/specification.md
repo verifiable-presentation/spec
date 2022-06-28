@@ -632,32 +632,20 @@ _Presentation Not Found_
 
 ## Generator API
 
-### **POST `/application`**
+### **GET `/keys`**
 
-> Create an application to configure the generator. Each application uses a
-> single template from a store to render presentations using a renderer service.
+> List the generated key pairs.
 
-**Request Body**
+**Request Query Parameters**
 
-| Field    | Type     | Required | Notes                             |
-| -------- | -------- | -------- | --------------------------------- |
-| name     | `string` | `true`   | The name of the application.      |
-| template | `object` | `true`   | The template store configuration. |
-| renderer | `object` | `true`   | The renderer configuration.       |
+| Field  | Type     | Required | Notes                |
+| ------ | -------- | -------- | -------------------- |
+| `name` | `string` | `false`  | The name of the key. |
 
 Example:
 
-```json
-{
-	"name": "Happy Inc",
-	"template": {
-		"store": "https://example.edu/template-store/",
-		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
-	},
-	"renderer": {
-		"uri": "https://example.edu/renderer/"
-	}
-}
+```http
+GET /keys?name=Example%20Key
 ```
 
 **Response**
@@ -667,54 +655,24 @@ Example:
 ```json
 {
 	"meta": {
-		"status": 201
+		"status": 200
 	},
-	"data": {
-		"name": "Happy Inc",
-		"id": "WSJ6ZiU3tWjllJjHuA9mm",
-		"template": {
-			"store": "https://example.edu/template-store/",
-			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
-		},
-		"renderer": {
-			"uri": "https://example.edu/renderer/"
-		},
-		"keys": []
-	}
+	"data": [
+		{
+			"id": "oLrLoSxG8nNupXoNZD8fJ",
+			"uri": "https://example.edu/keys/public/1",
+			"name": "Example Key",
+			"algorithm": "rsa",
+			"size": 4096,
+			"created": "2022-06-28T04:29:59+05430",
+			"certificate": "...",
+			"public": "..."
+		}
+	]
 }
 ```
 
-**Errors**
-
-_Invalid Server URI_
-
-```json
-{
-	"meta": {
-		"status": 400
-	},
-	"error": {
-		"code": "improper-payload",
-		"message": "The URI provided is not a valid template store."
-	}
-}
-```
-
-_Missing/Invalid Payload_
-
-```json
-{
-	"meta": {
-		"status": 400
-	},
-	"error": {
-		"code": "improper-payload",
-		"message": "Invalid value provided for field `renderer.uri`."
-	}
-}
-```
-
-### **POST `/application/{id}/keys`**
+### **POST `/keys`**
 
 > Generate a new key pair used to sign verifiable presentations.
 
@@ -722,6 +680,7 @@ _Missing/Invalid Payload_
 
 | Field     | Type      | Required | Notes                                                                        |
 | --------- | --------- | -------- | ---------------------------------------------------------------------------- |
+| name      | `string`  | `true`   | The name of the key.                                                         |
 | algorithm | `enum`    | `true`   | The algorithm for the key. Could be one of the following: `ed25519` or `rsa` |
 | size      | `integer` | `true`   | The size of the keypair generated.                                           |
 
@@ -738,8 +697,10 @@ Example:
 		{
 			"id": "oLrLoSxG8nNupXoNZD8fJ",
 			"uri": "https://example.edu/keys/public/1",
+			"name": "Example Key",
 			"algorithm": "rsa",
 			"size": 4096,
+			"created": "2022-06-28T04:29:59+05430",
 			"certificate": "...",
 			"public": "..."
 		}
@@ -763,7 +724,7 @@ _Missing/Invalid Payload_
 }
 ```
 
-### **DELETE `/applications/{id}/keys/{kid}`**
+### **DELETE `/keys/{kid}`**
 
 > Deletes a key pair that was used to sign verifiable presentations.
 
@@ -771,8 +732,7 @@ _Missing/Invalid Payload_
 
 | Field | Type     | Required | Notes                        |
 | ----- | -------- | -------- | ---------------------------- |
-| id    | `string` | `true`   | The ID of the application.   |
-| kid   | `string` | `true`   | The ID of the key to delete. |
+| id    | `string` | `true`   | The ID of the key to delete. |
 
 **Response**
 
@@ -781,15 +741,14 @@ Example:
 ```json
 {
 	"meta": {
-		"status": 200
-	},
-	"data": []
+		"status": 204
+	}
 }
 ```
 
 **Errors**
 
-_Application/Key Not Found_
+_Key Not Found_
 
 ```json
 {
@@ -798,7 +757,132 @@ _Application/Key Not Found_
 	},
 	"error": {
 		"code": "entity-not-found",
-		"message": "A key with the specified ID does not exist for the given application."
+		"message": "A key with the specified ID does not exist."
+	}
+}
+```
+
+_Key Is Used_
+
+```json
+{
+	"meta": {
+		"status": 412
+	},
+	"error": {
+		"code": "precondition-failed",
+		"message": "This key is already used by an application. Please unlink the key from the application before deleting it."
+	}
+}
+```
+
+### **POST `/applications`**
+
+> Create an application to configure the generator. Each application uses a
+> single template from a store to render presentations using a renderer service.
+> The first key passed in the array will be used to sign all presentations by
+> default.
+
+**Request Body**
+
+| Field    | Type            | Required | Notes                                             |
+| -------- | --------------- | -------- | ------------------------------------------------- |
+| name     | `string`        | `true`   | The name of the application.                      |
+| template | `object`        | `true`   | The template store configuration.                 |
+| renderer | `object`        | `true`   | The renderer configuration.                       |
+| keys     | `array<string>` | `true`   | The list of Key IDs to use to sign presentations. |
+
+Example:
+
+```json
+{
+	"name": "Happy Inc",
+	"template": {
+		"store": "https://example.edu/template-store/",
+		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+	},
+	"renderer": {
+		"uri": "https://example.edu/renderer/"
+	},
+	"keys": ["oLrLoSxG8nNupXoNZD8fJ"]
+}
+```
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 201
+	},
+	"data": {
+		"name": "Happy Inc",
+		"id": "WSJ6ZiU3tWjllJjHuA9mm",
+		"template": {
+			"store": "https://example.edu/template-store/",
+			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+		},
+		"renderer": {
+			"uri": "https://example.edu/renderer/"
+		},
+		"keys": [
+			{
+				"id": "oLrLoSxG8nNupXoNZD8fJ",
+				"uri": "https://example.edu/keys/public/1",
+				"name": "Example Key",
+				"algorithm": "rsa",
+				"size": 4096,
+				"created": "2022-06-28T04:29:59+05430",
+				"certificate": "...",
+				"public": "..."
+			}
+		]
+	}
+}
+```
+
+**Errors**
+
+_Invalid Server URI_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "The URI provided is not a valid template store."
+	}
+}
+```
+
+_Invalid Key ID_
+
+```json
+{
+	"meta": {
+		"status": 404
+	},
+	"error": {
+		"code": "entity-not-found",
+		"message": "A keypair with the specified ID was not found."
+	}
+}
+```
+
+_Missing/Invalid Payload_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "Invalid value provided for field `renderer.uri`."
 	}
 }
 ```
@@ -836,8 +920,10 @@ Example:
 			{
 				"id": "oLrLoSxG8nNupXoNZD8fJ",
 				"uri": "https://example.edu/keys/public/1",
+				"name": "Example Key",
 				"algorithm": "rsa",
 				"size": 4096,
+				"created": "2022-06-28T04:29:59+05430",
 				"certificate": "...",
 				"public": "..."
 			}
