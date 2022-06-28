@@ -1000,6 +1000,35 @@ _Application Not Found_
 | credentials | `array<object>` | `true`   | The credentials to use to create a presentation.                                                                  |
 | output      | `enum`          | `true`   | The format in which the presentation should be rendered. Can be one of the following: `svg`, `pdf`, `txt`, `htm`. |
 
+```json
+{
+	"credentials": [
+		{
+			"@context": [
+				"https://www.w3.org/2018/credentials/v1",
+				"https://www.w3.org/2018/credentials/examples/v1"
+			],
+			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+			"type": ["VerifiableCredential", "IdentityCredential"],
+			"issuer": "https://example.edu/issuers/565049",
+			"issuanceDate": "2010-01-01T19:23:24Z",
+			"credentialSubject": {
+				"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
+				"name": "Happy"
+			},
+			"proof": {
+				"type": "RsaSignature2018",
+				"created": "2017-06-18T21:19:10Z",
+				"proofPurpose": "assertionMethod",
+				"verificationMethod": "https://example.edu/issuers/565049#key-1",
+				"jws": "..."
+			}
+		}
+	],
+	"output": "svg"
+}
+```
+
 **Response**
 
 Example:
