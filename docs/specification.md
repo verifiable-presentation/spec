@@ -40,26 +40,32 @@
   verifiable presentation.
 - Verification of the verifiable presentation by the verifier.
 
-## APIs
+## Template Store API
 
-### Template Store
+### **POST `/templates`**
 
-#### **POST `/templates`**
+> Store a new template in the store.
 
 **Request Body**
 
-| Field    | Type     | Required | Notes                                                   |
-| -------- | -------- | -------- | ------------------------------------------------------- |
-| template | `string` | `true`   |                                                         |
-| renderer | `enum`   | `true`   | Can be one of the following: `ejs`, `jstl`, `nunjucks`. |
-| schema   | `ajv`    | `false`  | The schema of the data required to render the template. |
+| Field    | Type     | Required | Notes                                                       |
+| -------- | -------- | -------- | ----------------------------------------------------------- |
+| template | `string` | `true`   |                                                             |
+| renderer | `enum`   | `true`   | Can be one of the following: `ejs`, `jstl`, `nunjucks`.     |
+| schema   | `object` | `false`  | The AJV schema of the data required to render the template. |
 
 Example:
 
 ```json
 {
 	"template": "Hello ${data.name}",
-	"renderer": "jstl"
+	"renderer": "jstl",
+	"schema": {
+		"name": {
+			"type": "string",
+			"required": true
+		}
+	}
 }
 ```
 
@@ -73,7 +79,7 @@ Example:
 		"status": 201
 	},
 	"data": {
-		"id": "lFTo9YDjnkV04rcuWQuOg8y93m",
+		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt",
 		"template": "Hello ${data.name}",
 		"renderer": "jstl",
 		"schema": {
@@ -116,7 +122,9 @@ _Missing/Invalid Payload_
 }
 ```
 
-#### **GET `/templates/{id}`**
+### **GET `/templates/{id}`**
+
+> Retrieve a template and its metadata from the store.
 
 **Request Parameters**
 
@@ -134,7 +142,7 @@ Example:
 		"status": 200
 	},
 	"data": {
-		"id": "lFTo9YDjnkV04rcuWQuOg8y93m",
+		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt",
 		"template": "Hello ${data.name}",
 		"renderer": "jstl",
 		"schema": {
@@ -163,9 +171,11 @@ _Template Not Found_
 }
 ```
 
-### Renderer
+## Renderer API
 
-#### **POST `/render`**
+### **POST `/render`**
+
+> Render a certificate using the given data from a specified template.
 
 **Request Body**
 
@@ -179,7 +189,7 @@ Example:
 
 ```json
 {
-	"template": "lFTo9YDjnkV04rcuWQuOg8y93m",
+	"template": "PTqVo635KbGZXZ4KzUJV86iBpixt",
 	"data": {
 		"name": "Happy"
 	},
@@ -244,20 +254,22 @@ _Insufficient Data/Schema Mismatch_
 }
 ```
 
-### Registry
+## Registry API
 
-#### **GET `/presentations`**
+### **GET `/presentations`**
+
+> Search for presentations related to a certain subject.
 
 **Request Query Parameters**
 
-| Field     | Type     | Notes                                                                        |
-| --------- | -------- | ---------------------------------------------------------------------------- |
-| `subject` | `string` | The ID of the subject in the credentials to return. (`credentialSubject.id`) |
+| Field     | Type     | Required | Notes                                                                        |
+| --------- | -------- | -------- | ---------------------------------------------------------------------------- |
+| `subject` | `string` | `false`  | The ID of the subject in the credentials to return. (`credentialSubject.id`) |
 
 Example:
 
 ```http
-GET /presentations?subject=did%3Aexample%3AksqNItOVL1cAw7qhHXBxt
+GET /presentations?subject=did%3Aexample%3AF4RGIuxcKIjygFThqsXW9GX6HocV
 ```
 
 **Response**
@@ -273,7 +285,7 @@ GET /presentations?subject=did%3Aexample%3AksqNItOVL1cAw7qhHXBxt
 				"https://www.w3.org/2018/credentials/v1",
 				"https://www.w3.org/2018/credentials/examples/v1"
 			],
-			"id": "http://example.edu/credentials/3732",
+			"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
@@ -281,12 +293,12 @@ GET /presentations?subject=did%3Aexample%3AksqNItOVL1cAw7qhHXBxt
 						"https://www.w3.org/2018/credentials/v1",
 						"https://www.w3.org/2018/credentials/examples/v1"
 					],
-					"id": "http://example.edu/credentials/1872",
+					"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 					"type": ["VerifiableCredential", "IdentityCredential"],
 					"issuer": "https://example.edu/issuers/565049",
 					"issuanceDate": "2010-01-01T19:23:24Z",
 					"credentialSubject": {
-						"id": "did:example:ksqNItOVL1cAw7qhHXBxt",
+						"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 						"name": "Happy"
 					},
 					"proof": {
@@ -302,7 +314,7 @@ GET /presentations?subject=did%3Aexample%3AksqNItOVL1cAw7qhHXBxt
 				"type": "RsaSignature2018",
 				"created": "2018-09-14T21:19:10Z",
 				"proofPurpose": "authentication",
-				"verificationMethod": "did:example:BPhmuLkq29AqTbhPSUL3c#keys-1",
+				"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
 				"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 				"domain": "4jt78h47fh47",
 				"jws": "..."
@@ -312,7 +324,9 @@ GET /presentations?subject=did%3Aexample%3AksqNItOVL1cAw7qhHXBxt
 }
 ```
 
-#### **POST `/presentations`**
+### **POST `/presentations`**
+
+> Store a presentation in the registry.
 
 **Request Body**
 
@@ -329,7 +343,7 @@ Example:
 			"https://www.w3.org/2018/credentials/v1",
 			"https://www.w3.org/2018/credentials/examples/v1"
 		],
-		"id": "http://example.edu/credentials/3732",
+		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
@@ -337,12 +351,12 @@ Example:
 					"https://www.w3.org/2018/credentials/v1",
 					"https://www.w3.org/2018/credentials/examples/v1"
 				],
-				"id": "http://example.edu/credentials/1872",
+				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"type": ["VerifiableCredential", "IdentityCredential"],
 				"issuer": "https://example.edu/issuers/565049",
 				"issuanceDate": "2010-01-01T19:23:24Z",
 				"credentialSubject": {
-					"id": "did:example:ksqNItOVL1cAw7qhHXBxt",
+					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 					"name": "Happy"
 				},
 				"proof": {
@@ -358,7 +372,7 @@ Example:
 			"type": "RsaSignature2018",
 			"created": "2018-09-14T21:19:10Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:BPhmuLkq29AqTbhPSUL3c#keys-1",
+			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
 			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 			"domain": "4jt78h47fh47",
 			"jws": "..."
@@ -381,7 +395,7 @@ Example:
 			"https://www.w3.org/2018/credentials/v1",
 			"https://www.w3.org/2018/credentials/examples/v1"
 		],
-		"id": "http://example.edu/credentials/3732",
+		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
@@ -389,12 +403,12 @@ Example:
 					"https://www.w3.org/2018/credentials/v1",
 					"https://www.w3.org/2018/credentials/examples/v1"
 				],
-				"id": "http://example.edu/credentials/1872",
+				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"type": ["VerifiableCredential", "IdentityCredential"],
 				"issuer": "https://example.edu/issuers/565049",
 				"issuanceDate": "2010-01-01T19:23:24Z",
 				"credentialSubject": {
-					"id": "did:example:ksqNItOVL1cAw7qhHXBxt",
+					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 					"name": "Happy"
 				},
 				"proof": {
@@ -410,7 +424,7 @@ Example:
 			"type": "RsaSignature2018",
 			"created": "2018-09-14T21:19:10Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:BPhmuLkq29AqTbhPSUL3c#keys-1",
+			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
 			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 			"domain": "4jt78h47fh47",
 			"jws": "..."
@@ -435,7 +449,9 @@ _Missing/Invalid Payload_
 }
 ```
 
-#### **GET `/presentations/{id}`**
+### **GET `/presentations/{id}`**
+
+> Retrive a presentation from the registry.
 
 **Request Parameters**
 
@@ -457,7 +473,7 @@ Example:
 			"https://www.w3.org/2018/credentials/v1",
 			"https://www.w3.org/2018/credentials/examples/v1"
 		],
-		"id": "http://example.edu/credentials/3732",
+		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
@@ -465,12 +481,12 @@ Example:
 					"https://www.w3.org/2018/credentials/v1",
 					"https://www.w3.org/2018/credentials/examples/v1"
 				],
-				"id": "http://example.edu/credentials/1872",
+				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"type": ["VerifiableCredential", "IdentityCredential"],
 				"issuer": "https://example.edu/issuers/565049",
 				"issuanceDate": "2010-01-01T19:23:24Z",
 				"credentialSubject": {
-					"id": "did:example:ksqNItOVL1cAw7qhHXBxt",
+					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 					"name": "Happy"
 				},
 				"proof": {
@@ -486,7 +502,7 @@ Example:
 			"type": "RsaSignature2018",
 			"created": "2018-09-14T21:19:10Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:BPhmuLkq29AqTbhPSUL3c#keys-1",
+			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
 			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 			"domain": "4jt78h47fh47",
 			"jws": "..."
@@ -511,7 +527,9 @@ _Presentation Not Found_
 }
 ```
 
-#### **PUT `/presentations/{id}`**
+### **PUT `/presentations/{id}`**
+
+> Update a presentation in the registry.
 
 **Request Parameters**
 
@@ -539,7 +557,7 @@ Example:
 			"https://www.w3.org/2018/credentials/v1",
 			"https://www.w3.org/2018/credentials/examples/v1"
 		],
-		"id": "http://example.edu/credentials/3732",
+		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
@@ -547,12 +565,12 @@ Example:
 					"https://www.w3.org/2018/credentials/v1",
 					"https://www.w3.org/2018/credentials/examples/v1"
 				],
-				"id": "http://example.edu/credentials/1872",
+				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"type": ["VerifiableCredential", "IdentityCredential"],
 				"issuer": "https://example.edu/issuers/565049",
 				"issuanceDate": "2010-01-01T19:23:24Z",
 				"credentialSubject": {
-					"id": "did:example:ksqNItOVL1cAw7qhHXBxt",
+					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 					"name": "Happy"
 				},
 				"proof": {
@@ -568,7 +586,7 @@ Example:
 			"type": "RsaSignature2018",
 			"created": "2018-09-14T21:19:10Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:BPhmuLkq29AqTbhPSUL3c#keys-1",
+			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
 			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 			"domain": "4jt78h47fh47",
 			"jws": "..."
@@ -603,6 +621,443 @@ _Presentation Not Found_
 	"error": {
 		"code": "entity-not-found",
 		"message": "A presentation with the specified ID does not exist."
+	}
+}
+```
+
+> **Note**
+>
+> There is no endpoint to delete/revoke presentations as they are automatically
+> invalidated when the credentials they encapsulate are expired/revoked/deleted.
+
+## Generator API
+
+### **POST `/application`**
+
+> Create an application to configure the generator. Each application uses a
+> single template from a store to render presentations using a renderer service.
+
+**Request Body**
+
+| Field    | Type     | Required | Notes                             |
+| -------- | -------- | -------- | --------------------------------- |
+| name     | `string` | `true`   | The name of the application.      |
+| template | `object` | `true`   | The template store configuration. |
+| renderer | `object` | `true`   | The renderer configuration.       |
+
+Example:
+
+```json
+{
+	"name": "Happy Inc",
+	"template": {
+		"store": "https://example.edu/template-store/",
+		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+	},
+	"renderer": {
+		"uri": "https://example.edu/renderer/"
+	}
+}
+```
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 201
+	},
+	"data": {
+		"name": "Happy Inc",
+		"id": "WSJ6ZiU3tWjllJjHuA9mm",
+		"template": {
+			"store": "https://example.edu/template-store/",
+			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+		},
+		"renderer": {
+			"uri": "https://example.edu/renderer/"
+		},
+		"keys": []
+	}
+}
+```
+
+**Errors**
+
+_Invalid Server URI_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "The URI provided is not a valid template store."
+	}
+}
+```
+
+_Missing/Invalid Payload_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "Invalid value provided for field `renderer.uri`."
+	}
+}
+```
+
+### **POST `/application/{id}/keys`**
+
+> Generate a new key pair used to sign verifiable presentations.
+
+**Request Body**
+
+| Field     | Type      | Required | Notes                                                                        |
+| --------- | --------- | -------- | ---------------------------------------------------------------------------- |
+| algorithm | `enum`    | `true`   | The algorithm for the key. Could be one of the following: `ed25519` or `rsa` |
+| size      | `integer` | `true`   | The size of the keypair generated.                                           |
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 201
+	},
+	"data": [
+		{
+			"id": "oLrLoSxG8nNupXoNZD8fJ",
+			"uri": "https://example.edu/keys/public/1",
+			"algorithm": "rsa",
+			"size": 4096,
+			"certificate": "...",
+			"public": "..."
+		}
+	]
+}
+```
+
+**Errors**
+
+_Missing/Invalid Payload_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "Invalid value provided for field `algorithm`."
+	}
+}
+```
+
+### **DELETE `/applications/{id}/keys/{kid}`**
+
+> Deletes a key pair that was used to sign verifiable presentations.
+
+**Request Parameters**
+
+| Field | Type     | Required | Notes                        |
+| ----- | -------- | -------- | ---------------------------- |
+| id    | `string` | `true`   | The ID of the application.   |
+| kid   | `string` | `true`   | The ID of the key to delete. |
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 200
+	},
+	"data": []
+}
+```
+
+**Errors**
+
+_Application/Key Not Found_
+
+```json
+{
+	"meta": {
+		"status": 404
+	},
+	"error": {
+		"code": "entity-not-found",
+		"message": "A key with the specified ID does not exist for the given application."
+	}
+}
+```
+
+### **GET `/applications/{id}`**
+
+> Retrieve the application metadata and configuration.
+
+**Request Parameters**
+
+| Field | Type     | Required | Notes                                  |
+| ----- | -------- | -------- | -------------------------------------- |
+| id    | `string` | `true`   | The ID of the application to retrieve. |
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 200
+	},
+	"data": {
+		"id": "WSJ6ZiU3tWjllJjHuA9mm",
+		"name": "Happy Inc",
+		"template": {
+			"store": "https://example.edu/template-store/",
+			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+		},
+		"renderer": {
+			"uri": "https://example.edu/renderer/"
+		},
+		"keys": [
+			{
+				"id": "oLrLoSxG8nNupXoNZD8fJ",
+				"uri": "https://example.edu/keys/public/1",
+				"algorithm": "rsa",
+				"size": 4096,
+				"certificate": "...",
+				"public": "..."
+			}
+		]
+	}
+}
+```
+
+**Errors**
+
+_Application Not Found_
+
+```json
+{
+	"meta": {
+		"status": 404
+	},
+	"error": {
+		"code": "entity-not-found",
+		"message": "An application with the specified ID does not exist."
+	}
+}
+```
+
+### **PATCH `/application/{id}`**
+
+> Update an application's configuration.
+
+**Request Body**
+
+| Field    | Type     | Required | Notes                             |
+| -------- | -------- | -------- | --------------------------------- |
+| name     | `string` | `false`  | The name of the application.      |
+| template | `object` | `true`   | The template store configuration. |
+| renderer | `object` | `true`   | The renderer configuration.       |
+
+Example:
+
+```json
+{
+	"name": "Happy Co"
+}
+```
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 200
+	},
+	"data": {
+		"name": "Happy Co",
+		"id": "WSJ6ZiU3tWjllJjHuA9mm",
+		"template": {
+			"store": "https://example.edu/template-store/",
+			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+		},
+		"renderer": {
+			"uri": "https://example.edu/renderer/"
+		},
+		"keys": []
+	}
+}
+```
+
+**Errors**
+
+_Invalid Server URI_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "The URI provided is not a valid template store."
+	}
+}
+```
+
+_Missing/Invalid Payload_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "Invalid value provided for field `renderer.uri`."
+	}
+}
+```
+
+_Application Not Found_
+
+```json
+{
+	"meta": {
+		"status": 404
+	},
+	"error": {
+		"code": "entity-not-found",
+		"message": "An application with the specified ID does not exist."
+	}
+}
+```
+
+### **DELETE `/applications/{id}`**
+
+> Delete an application.
+
+**Request Parameters**
+
+| Field | Type     | Required | Notes                                |
+| ----- | -------- | -------- | ------------------------------------ |
+| id    | `string` | `true`   | The ID of the application to delete. |
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 204
+	}
+}
+```
+
+**Errors**
+
+_Application Not Found_
+
+```json
+{
+	"meta": {
+		"status": 404
+	},
+	"error": {
+		"code": "entity-not-found",
+		"message": "An application with the specified ID does not exist."
+	}
+}
+```
+
+#### **POST `/applications/{id}/issue`**
+
+> Issue a new verifiable presentation. The data passed to the template is the
+> contents of the `credentialSubject` field in all the credentials.
+
+**Request Body**
+
+| Field       | Type            | Required | Notes                                                                                                             |
+| ----------- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| credentials | `array<object>` | `true`   | The credentials to use to create a presentation.                                                                  |
+| output      | `enum`          | `true`   | The format in which the presentation should be rendered. Can be one of the following: `svg`, `pdf`, `txt`, `htm`. |
+
+**Response**
+
+Example:
+
+```json
+{
+	"meta": {
+		"status": 201
+	},
+	"data": {
+		"certificate": "<svg ...",
+		"presentation": {
+			"@context": [
+				"https://www.w3.org/2018/credentials/v1",
+				"https://www.w3.org/2018/credentials/examples/v1"
+			],
+			"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+			"type": "VerifiablePresentation",
+			"verifiableCredential": [
+				{
+					"@context": [
+						"https://www.w3.org/2018/credentials/v1",
+						"https://www.w3.org/2018/credentials/examples/v1"
+					],
+					"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+					"type": ["VerifiableCredential", "IdentityCredential"],
+					"issuer": "https://example.edu/issuers/565049",
+					"issuanceDate": "2010-01-01T19:23:24Z",
+					"credentialSubject": {
+						"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
+						"name": "Happy"
+					},
+					"proof": {
+						"type": "RsaSignature2018",
+						"created": "2017-06-18T21:19:10Z",
+						"proofPurpose": "assertionMethod",
+						"verificationMethod": "https://example.edu/issuers/565049#key-1",
+						"jws": "..."
+					}
+				}
+			]
+		}
+	}
+}
+```
+
+**Errors**
+
+_Missing/Invalid Payload_
+
+```json
+{
+	"meta": {
+		"status": 400
+	},
+	"error": {
+		"code": "improper-payload",
+		"message": "Invalid value provided for field `output`."
 	}
 }
 ```
