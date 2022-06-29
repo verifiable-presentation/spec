@@ -61,10 +61,12 @@ Example:
 	"template": "Hello ${data.name}",
 	"renderer": "jstl",
 	"schema": {
-		"name": {
-			"type": "string",
-			"required": true
-		}
+		"type": "object",
+		"properties": {
+			"name": { "type": "string" }
+		},
+		"required": ["name"],
+		"additionalProperties": false
 	}
 }
 ```
@@ -83,10 +85,12 @@ Example:
 		"template": "Hello ${data.name}",
 		"renderer": "jstl",
 		"schema": {
-			"name": {
-				"type": "string",
-				"required": true
-			}
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" }
+			},
+			"required": ["name"],
+			"additionalProperties": false
 		}
 	}
 }
@@ -146,10 +150,12 @@ Example:
 		"template": "Hello ${data.name}",
 		"renderer": "jstl",
 		"schema": {
-			"name": {
-				"type": "string",
-				"required": true
-			}
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" }
+			},
+			"required": ["name"],
+			"additionalProperties": false
 		}
 	}
 }
@@ -193,10 +199,12 @@ Example:
 		"template": "Hello ${data.name}",
 		"renderer": "jstl",
 		"schema": {
-			"name": {
-				"type": "string",
-				"required": true
-			}
+			"type": "object",
+			"properties": {
+				"name": { "type": "string" }
+			},
+			"required": ["name"],
+			"additionalProperties": false
 		}
 	},
 	"data": {
