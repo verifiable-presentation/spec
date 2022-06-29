@@ -347,53 +347,45 @@ GET /presentations?subject=did%3Aexample%3AF4RGIuxcKIjygFThqsXW9GX6HocV
 
 **Request Body**
 
-| Field        | Type     | Required | Notes                                     |
-| ------------ | -------- | -------- | ----------------------------------------- |
-| presentation | `object` | `true`   | A valid verifiable presentation to store. |
-
-Example:
-
 ```json
 {
-	"presentation": {
-		"@context": [
-			"https://www.w3.org/2018/credentials/v1",
-			"https://www.w3.org/2018/credentials/examples/v1"
-		],
-		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-		"type": "VerifiablePresentation",
-		"verifiableCredential": [
-			{
-				"@context": [
-					"https://www.w3.org/2018/credentials/v1",
-					"https://www.w3.org/2018/credentials/examples/v1"
-				],
-				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
-				"type": ["VerifiableCredential", "IdentityCredential"],
-				"issuer": "https://example.edu/issuers/565049",
-				"issuanceDate": "2010-01-01T19:23:24Z",
-				"credentialSubject": {
-					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
-					"name": "Happy"
-				},
-				"proof": {
-					"type": "RsaSignature2018",
-					"created": "2017-06-18T21:19:10Z",
-					"proofPurpose": "assertionMethod",
-					"verificationMethod": "https://example.edu/issuers/565049#key-1",
-					"jws": "..."
-				}
+	"@context": [
+		"https://www.w3.org/2018/credentials/v1",
+		"https://www.w3.org/2018/credentials/examples/v1"
+	],
+	"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+	"type": "VerifiablePresentation",
+	"verifiableCredential": [
+		{
+			"@context": [
+				"https://www.w3.org/2018/credentials/v1",
+				"https://www.w3.org/2018/credentials/examples/v1"
+			],
+			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+			"type": ["VerifiableCredential", "IdentityCredential"],
+			"issuer": "https://example.edu/issuers/565049",
+			"issuanceDate": "2010-01-01T19:23:24Z",
+			"credentialSubject": {
+				"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
+				"name": "Happy"
+			},
+			"proof": {
+				"type": "RsaSignature2018",
+				"created": "2017-06-18T21:19:10Z",
+				"proofPurpose": "assertionMethod",
+				"verificationMethod": "https://example.edu/issuers/565049#key-1",
+				"jws": "..."
 			}
-		],
-		"proof": {
-			"type": "RsaSignature2018",
-			"created": "2018-09-14T21:19:10Z",
-			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
-			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-			"domain": "4jt78h47fh47",
-			"jws": "..."
 		}
+	],
+	"proof": {
+		"type": "RsaSignature2018",
+		"created": "2018-09-14T21:19:10Z",
+		"proofPurpose": "authentication",
+		"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
+		"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
+		"domain": "4jt78h47fh47",
+		"jws": "..."
 	}
 }
 ```
@@ -556,9 +548,48 @@ _Presentation Not Found_
 
 **Request Body**
 
-| Field        | Type     | Required | Notes                                     |
-| ------------ | -------- | -------- | ----------------------------------------- |
-| presentation | `object` | `true`   | A valid verifiable presentation to store. |
+```json
+{
+	"@context": [
+		"https://www.w3.org/2018/credentials/v1",
+		"https://www.w3.org/2018/credentials/examples/v1"
+	],
+	"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+	"type": "VerifiablePresentation",
+	"verifiableCredential": [
+		{
+			"@context": [
+				"https://www.w3.org/2018/credentials/v1",
+				"https://www.w3.org/2018/credentials/examples/v1"
+			],
+			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+			"type": ["VerifiableCredential", "IdentityCredential"],
+			"issuer": "https://example.edu/issuers/565049",
+			"issuanceDate": "2010-01-01T19:23:24Z",
+			"credentialSubject": {
+				"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
+				"name": "Happy"
+			},
+			"proof": {
+				"type": "RsaSignature2018",
+				"created": "2017-06-18T21:19:10Z",
+				"proofPurpose": "assertionMethod",
+				"verificationMethod": "https://example.edu/issuers/565049#key-1",
+				"jws": "..."
+			}
+		}
+	],
+	"proof": {
+		"type": "RsaSignature2018",
+		"created": "2018-09-14T21:19:10Z",
+		"proofPurpose": "authentication",
+		"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
+		"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
+		"domain": "4jt78h47fh47",
+		"jws": "..."
+	}
+}
+```
 
 **Response**
 
