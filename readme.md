@@ -8,3 +8,8 @@
 
 The detailed specification for this service can be found in the
 [`docs/specification.md`](docs/specification.md) file.
+
+## Reference Implementation
+
+An example implementation of the specification can be found in the
+[`impl`](https://github.com/verifiable-presentation/impl) repo.
