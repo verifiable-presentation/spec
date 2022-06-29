@@ -48,11 +48,11 @@
 
 **Request Body**
 
-| Field    | Type     | Required | Notes                                                       |
-| -------- | -------- | -------- | ----------------------------------------------------------- |
-| template | `string` | `true`   |                                                             |
-| renderer | `enum`   | `true`   | Can be one of the following: `ejs`, `jstl`, `nunjucks`.     |
-| schema   | `object` | `false`  | The AJV schema of the data required to render the template. |
+| Field    | Type     | Required | Notes                                                         |
+| -------- | -------- | -------- | ------------------------------------------------------------- |
+| template | `string` | `true`   |                                                               |
+| renderer | `enum`   | `true`   | Can be whatever the renderer supports, e.g., `ejs` or `jstl`. |
+| schema   | `object` | `false`  | The AJV schema of the data required to render the template.   |
 
 Example:
 
@@ -179,17 +179,26 @@ _Template Not Found_
 
 **Request Body**
 
-| Field    | Type     | Required | Notes                                                                                                    |
-| -------- | -------- | -------- | -------------------------------------------------------------------------------------------------------- |
-| template | `string` | `true`   | The template to use to render the data.                                                                  |
-| data     | `object` | `true`   | The data to render.                                                                                      |
-| output   | `enum`   | `true`   | The format in which to output the presentation. Can be one of the following: `svg`, `pdf`, `txt`, `htm`. |
+| Field    | Type     | Required | Notes                                                                                                               |
+| -------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| template | `object` | `true`   | The template to use to render the data.                                                                             |
+| data     | `object` | `true`   | The data to render.                                                                                                 |
+| output   | `enum`   | `true`   | The format in which to output the presentation. Can be whatever the renderer supports, e.g., `htm`, `svg` or `pdf`. |
 
 Example:
 
 ```json
 {
-	"template": "Hello ${data.name}",
+	"template": {
+		"template": "Hello ${data.name}",
+		"renderer": "jstl",
+		"schema": {
+			"name": {
+				"type": "string",
+				"required": true
+			}
+		}
+	},
 	"data": {
 		"name": "Happy"
 	},
@@ -1081,10 +1090,10 @@ _Application Not Found_
 
 **Request Body**
 
-| Field       | Type            | Required | Notes                                                                                                             |
-| ----------- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| credentials | `array<object>` | `true`   | The credentials to use to create a presentation.                                                                  |
-| output      | `enum`          | `true`   | The format in which the presentation should be rendered. Can be one of the following: `svg`, `pdf`, `txt`, `htm`. |
+| Field       | Type            | Required | Notes                                                                                                                      |
+| ----------- | --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| credentials | `array<object>` | `true`   | The credentials to use to create a presentation.                                                                           |
+| output      | `enum`          | `true`   | The format in which the presentation should be rendered. Can be whatever the render supports, e.g., `htm`, `svg` or `pdf`. |
 
 ```json
 {
