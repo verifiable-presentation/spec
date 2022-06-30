@@ -275,18 +275,18 @@ _Insufficient Data/Schema Mismatch_
 
 ### **GET `/presentations`**
 
-> Search for presentations related to a certain subject.
+> Search for presentations related to a certain holder.
 
 **Request Query Parameters**
 
-| Field     | Type     | Required | Notes                                                                        |
-| --------- | -------- | -------- | ---------------------------------------------------------------------------- |
-| `subject` | `string` | `false`  | The ID of the subject in the credentials to return. (`credentialSubject.id`) |
+| Field    | Type     | Required | Notes                                                          |
+| -------- | -------- | -------- | -------------------------------------------------------------- |
+| `holder` | `string` | `false`  | The ID of the holder of the presentations we wish to retrieve. |
 
 Example:
 
 ```http
-GET /presentations?subject=did%3Aexample%3AF4RGIuxcKIjygFThqsXW9GX6HocV
+GET /presentations?holder=did%3Aexample%3Atpohz5uFEJFIteq3jY7vaG4gROLb
 ```
 
 **Response**
@@ -303,6 +303,7 @@ GET /presentations?subject=did%3Aexample%3AF4RGIuxcKIjygFThqsXW9GX6HocV
 				"https://www.w3.org/2018/credentials/examples/v1"
 			],
 			"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+			"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
@@ -354,6 +355,7 @@ GET /presentations?subject=did%3Aexample%3AF4RGIuxcKIjygFThqsXW9GX6HocV
 		"https://www.w3.org/2018/credentials/examples/v1"
 	],
 	"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+	"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
 	"type": "VerifiablePresentation",
 	"verifiableCredential": [
 		{
@@ -405,6 +407,7 @@ Example:
 			"https://www.w3.org/2018/credentials/examples/v1"
 		],
 		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+		"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
@@ -483,6 +486,7 @@ Example:
 			"https://www.w3.org/2018/credentials/examples/v1"
 		],
 		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+		"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
@@ -555,6 +559,7 @@ _Presentation Not Found_
 		"https://www.w3.org/2018/credentials/examples/v1"
 	],
 	"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+	"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
 	"type": "VerifiablePresentation",
 	"verifiableCredential": [
 		{
@@ -606,6 +611,7 @@ Example:
 			"https://www.w3.org/2018/credentials/examples/v1"
 		],
 		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+		"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
@@ -1180,6 +1186,7 @@ Example:
 				"https://www.w3.org/2018/credentials/examples/v1"
 			],
 			"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
+			"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
