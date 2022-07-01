@@ -1,0 +1,23 @@
+name: RFC
+description:
+  File an issue to request an addition or a change to the specification.
+title: 'rfc: ...'
+labels: [rfc, needs triage]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description:
+        Please search to see if an issue already exists for the bug you
+        encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: Change/Addition
+      description:
+        A detailed description of what should be changed/added and why it should
+        be changed/added.
+    validations:
+      required: false
