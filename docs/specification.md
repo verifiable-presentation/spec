@@ -719,7 +719,6 @@ Example:
 			"algorithm": "rsa",
 			"size": 4096,
 			"created": "2022-06-28T04:29:59+05430",
-			"certificate": "...",
 			"public": "..."
 		}
 	]
@@ -755,7 +754,6 @@ Example:
 			"algorithm": "rsa",
 			"size": 4096,
 			"created": "2022-06-28T04:29:59+05430",
-			"certificate": "...",
 			"public": "..."
 		}
 	]
@@ -889,7 +887,6 @@ Example:
 				"algorithm": "rsa",
 				"size": 4096,
 				"created": "2022-06-28T04:29:59+05430",
-				"certificate": "...",
 				"public": "..."
 			}
 		]
@@ -978,7 +975,6 @@ Example:
 				"algorithm": "rsa",
 				"size": 4096,
 				"created": "2022-06-28T04:29:59+05430",
-				"certificate": "...",
 				"public": "..."
 			}
 		]
