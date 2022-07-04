@@ -81,7 +81,7 @@ Example:
 		"status": 201
 	},
 	"data": {
-		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt",
+		"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt",
 		"template": "Hello ${data.name}",
 		"renderer": "jstl",
 		"schema": {
@@ -146,7 +146,7 @@ Example:
 		"status": 200
 	},
 	"data": {
-		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt",
+		"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt",
 		"template": "Hello ${data.name}",
 		"renderer": "jstl",
 		"schema": {
@@ -286,7 +286,7 @@ _Insufficient Data/Schema Mismatch_
 Example:
 
 ```http
-GET /presentations?holder=did%3Aexample%3Atpohz5uFEJFIteq3jY7vaG4gROLb
+GET /presentations?holder=did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U
 ```
 
 **Response**
@@ -298,41 +298,34 @@ GET /presentations?holder=did%3Aexample%3Atpohz5uFEJFIteq3jY7vaG4gROLb
 	},
 	"data": [
 		{
-			"@context": [
-				"https://www.w3.org/2018/credentials/v1",
-				"https://www.w3.org/2018/credentials/examples/v1"
-			],
-			"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-			"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
+			"@context": ["https://www.w3.org/2018/credentials/v1"],
+			"id": "did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U",
+			"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb",
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
-					"@context": [
-						"https://www.w3.org/2018/credentials/v1",
-						"https://www.w3.org/2018/credentials/examples/v1"
-					],
-					"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+					"@context": ["https://www.w3.org/2018/credentials/v1"],
+					"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
 					"type": ["VerifiableCredential", "IdentityCredential"],
-					"issuer": "https://example.edu/issuers/565049",
+					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 					"issuanceDate": "2010-01-01T19:23:24Z",
 					"credentialSubject": {
-						"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 						"name": "Happy"
 					},
 					"proof": {
-						"type": "RsaSignature2018",
+						"type": "Ed25519VerificationKey2020",
 						"created": "2017-06-18T21:19:10Z",
 						"proofPurpose": "assertionMethod",
-						"verificationMethod": "https://example.edu/issuers/565049#key-1",
+						"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
 						"jws": "..."
 					}
 				}
 			],
 			"proof": {
-				"type": "RsaSignature2018",
+				"type": "Ed25519VerificationKey2020",
 				"created": "2018-09-14T21:19:10Z",
 				"proofPurpose": "authentication",
-				"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
+				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 				"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 				"domain": "4jt78h47fh47",
 				"jws": "..."
@@ -350,41 +343,34 @@ GET /presentations?holder=did%3Aexample%3Atpohz5uFEJFIteq3jY7vaG4gROLb
 
 ```json
 {
-	"@context": [
-		"https://www.w3.org/2018/credentials/v1",
-		"https://www.w3.org/2018/credentials/examples/v1"
-	],
-	"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-	"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
+	"@context": ["https://www.w3.org/2018/credentials/v1"],
+	"id": "did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U",
+	"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb",
 	"type": "VerifiablePresentation",
 	"verifiableCredential": [
 		{
-			"@context": [
-				"https://www.w3.org/2018/credentials/v1",
-				"https://www.w3.org/2018/credentials/examples/v1"
-			],
-			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+			"@context": ["https://www.w3.org/2018/credentials/v1"],
+			"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
 			"type": ["VerifiableCredential", "IdentityCredential"],
-			"issuer": "https://example.edu/issuers/565049",
+			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 			"issuanceDate": "2010-01-01T19:23:24Z",
 			"credentialSubject": {
-				"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 				"name": "Happy"
 			},
 			"proof": {
-				"type": "RsaSignature2018",
+				"type": "Ed25519VerificationKey2020",
 				"created": "2017-06-18T21:19:10Z",
 				"proofPurpose": "assertionMethod",
-				"verificationMethod": "https://example.edu/issuers/565049#key-1",
+				"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
 				"jws": "..."
 			}
 		}
 	],
 	"proof": {
-		"type": "RsaSignature2018",
+		"type": "Ed25519VerificationKey2020",
 		"created": "2018-09-14T21:19:10Z",
 		"proofPurpose": "authentication",
-		"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
+		"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 		"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 		"domain": "4jt78h47fh47",
 		"jws": "..."
@@ -402,44 +388,39 @@ Example:
 		"status": 201
 	},
 	"data": {
-		"@context": [
-			"https://www.w3.org/2018/credentials/v1",
-			"https://www.w3.org/2018/credentials/examples/v1"
-		],
-		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-		"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
-		"type": "VerifiablePresentation",
-		"verifiableCredential": [
-			{
-				"@context": [
-					"https://www.w3.org/2018/credentials/v1",
-					"https://www.w3.org/2018/credentials/examples/v1"
-				],
-				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
-				"type": ["VerifiableCredential", "IdentityCredential"],
-				"issuer": "https://example.edu/issuers/565049",
-				"issuanceDate": "2010-01-01T19:23:24Z",
-				"credentialSubject": {
-					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
-					"name": "Happy"
-				},
-				"proof": {
-					"type": "RsaSignature2018",
-					"created": "2017-06-18T21:19:10Z",
-					"proofPurpose": "assertionMethod",
-					"verificationMethod": "https://example.edu/issuers/565049#key-1",
-					"jws": "..."
+		{
+			"@context": ["https://www.w3.org/2018/credentials/v1"],
+			"id": "did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U",
+			"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb",
+			"type": "VerifiablePresentation",
+			"verifiableCredential": [
+				{
+					"@context": ["https://www.w3.org/2018/credentials/v1"],
+					"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
+					"type": ["VerifiableCredential", "IdentityCredential"],
+					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+					"issuanceDate": "2010-01-01T19:23:24Z",
+					"credentialSubject": {
+						"name": "Happy"
+					},
+					"proof": {
+						"type": "Ed25519VerificationKey2020",
+						"created": "2017-06-18T21:19:10Z",
+						"proofPurpose": "assertionMethod",
+						"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
+						"jws": "..."
+					}
 				}
+			],
+			"proof": {
+				"type": "Ed25519VerificationKey2020",
+				"created": "2018-09-14T21:19:10Z",
+				"proofPurpose": "authentication",
+				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
+				"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
+				"domain": "4jt78h47fh47",
+				"jws": "..."
 			}
-		],
-		"proof": {
-			"type": "RsaSignature2018",
-			"created": "2018-09-14T21:19:10Z",
-			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
-			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-			"domain": "4jt78h47fh47",
-			"jws": "..."
 		}
 	}
 }
@@ -481,41 +462,34 @@ Example:
 		"status": 200
 	},
 	"data": {
-		"@context": [
-			"https://www.w3.org/2018/credentials/v1",
-			"https://www.w3.org/2018/credentials/examples/v1"
-		],
-		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-		"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
+		"@context": ["https://www.w3.org/2018/credentials/v1"],
+		"id": "did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U",
+		"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
-				"@context": [
-					"https://www.w3.org/2018/credentials/v1",
-					"https://www.w3.org/2018/credentials/examples/v1"
-				],
-				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+				"@context": ["https://www.w3.org/2018/credentials/v1"],
+				"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"type": ["VerifiableCredential", "IdentityCredential"],
-				"issuer": "https://example.edu/issuers/565049",
+				"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 				"issuanceDate": "2010-01-01T19:23:24Z",
 				"credentialSubject": {
-					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 					"name": "Happy"
 				},
 				"proof": {
-					"type": "RsaSignature2018",
+					"type": "Ed25519VerificationKey2020",
 					"created": "2017-06-18T21:19:10Z",
 					"proofPurpose": "assertionMethod",
-					"verificationMethod": "https://example.edu/issuers/565049#key-1",
+					"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
 					"jws": "..."
 				}
 			}
 		],
 		"proof": {
-			"type": "RsaSignature2018",
+			"type": "Ed25519VerificationKey2020",
 			"created": "2018-09-14T21:19:10Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
+			"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 			"domain": "4jt78h47fh47",
 			"jws": "..."
@@ -554,41 +528,34 @@ _Presentation Not Found_
 
 ```json
 {
-	"@context": [
-		"https://www.w3.org/2018/credentials/v1",
-		"https://www.w3.org/2018/credentials/examples/v1"
-	],
-	"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-	"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
+	"@context": ["https://www.w3.org/2018/credentials/v1"],
+	"id": "did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U",
+	"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb",
 	"type": "VerifiablePresentation",
 	"verifiableCredential": [
 		{
-			"@context": [
-				"https://www.w3.org/2018/credentials/v1",
-				"https://www.w3.org/2018/credentials/examples/v1"
-			],
-			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+			"@context": ["https://www.w3.org/2018/credentials/v1"],
+			"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
 			"type": ["VerifiableCredential", "IdentityCredential"],
-			"issuer": "https://example.edu/issuers/565049",
+			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 			"issuanceDate": "2010-01-01T19:23:24Z",
 			"credentialSubject": {
-				"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 				"name": "Happy"
 			},
 			"proof": {
-				"type": "RsaSignature2018",
+				"type": "Ed25519VerificationKey2020",
 				"created": "2017-06-18T21:19:10Z",
 				"proofPurpose": "assertionMethod",
-				"verificationMethod": "https://example.edu/issuers/565049#key-1",
+				"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
 				"jws": "..."
 			}
 		}
 	],
 	"proof": {
-		"type": "RsaSignature2018",
+		"type": "Ed25519VerificationKey2020",
 		"created": "2018-09-14T21:19:10Z",
 		"proofPurpose": "authentication",
-		"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
+		"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 		"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 		"domain": "4jt78h47fh47",
 		"jws": "..."
@@ -606,41 +573,34 @@ Example:
 		"status": 200
 	},
 	"data": {
-		"@context": [
-			"https://www.w3.org/2018/credentials/v1",
-			"https://www.w3.org/2018/credentials/examples/v1"
-		],
-		"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-		"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
+		"@context": ["https://www.w3.org/2018/credentials/v1"],
+		"id": "did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U",
+		"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb",
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
-				"@context": [
-					"https://www.w3.org/2018/credentials/v1",
-					"https://www.w3.org/2018/credentials/examples/v1"
-				],
-				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+				"@context": ["https://www.w3.org/2018/credentials/v1"],
+				"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"type": ["VerifiableCredential", "IdentityCredential"],
-				"issuer": "https://example.edu/issuers/565049",
+				"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 				"issuanceDate": "2010-01-01T19:23:24Z",
 				"credentialSubject": {
-					"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 					"name": "Happy"
 				},
 				"proof": {
-					"type": "RsaSignature2018",
+					"type": "Ed25519VerificationKey2020",
 					"created": "2017-06-18T21:19:10Z",
 					"proofPurpose": "assertionMethod",
-					"verificationMethod": "https://example.edu/issuers/565049#key-1",
+					"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
 					"jws": "..."
 				}
 			}
 		],
 		"proof": {
-			"type": "RsaSignature2018",
+			"type": "Ed25519VerificationKey2020",
 			"created": "2018-09-14T21:19:10Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:example:yNsJn2b6YEaLlAMYQyOk24vb3fss#keys-1",
+			"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
 			"domain": "4jt78h47fh47",
 			"jws": "..."
@@ -713,11 +673,9 @@ Example:
 	},
 	"data": [
 		{
-			"id": "oLrLoSxG8nNupXoNZD8fJ",
-			"uri": "https://example.edu/keys/public/1",
+			"id": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 			"name": "Example Key",
-			"algorithm": "rsa",
-			"size": 4096,
+			"type": "Ed25519VerificationKey2020",
 			"created": "2022-06-28T04:29:59+05430",
 			"public": "..."
 		}
@@ -731,11 +689,10 @@ Example:
 
 **Request Body**
 
-| Field     | Type      | Required | Notes                                                                        |
-| --------- | --------- | -------- | ---------------------------------------------------------------------------- |
-| name      | `string`  | `true`   | The name of the key.                                                         |
-| algorithm | `enum`    | `true`   | The algorithm for the key. Could be one of the following: `ed25519` or `rsa` |
-| size      | `integer` | `true`   | The size of the keypair generated.                                           |
+| Field | Type     | Required | Notes                                                                                                                          |
+| ----- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| name  | `string` | `true`   | The name of the key.                                                                                                           |
+| type  | `enum`   | `true`   | The type used to generate the key. Could be one of the following: `Ed25519VerificationKey2018` or `Ed25519VerificationKey2020` |
 
 **Response**
 
@@ -748,11 +705,9 @@ Example:
 	},
 	"data": [
 		{
-			"id": "oLrLoSxG8nNupXoNZD8fJ",
-			"uri": "https://example.edu/keys/public/1",
+			"id": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 			"name": "Example Key",
-			"algorithm": "rsa",
-			"size": 4096,
+			"type": "Ed25519VerificationKey2020",
 			"created": "2022-06-28T04:29:59+05430",
 			"public": "..."
 		}
@@ -771,7 +726,7 @@ _Missing/Invalid Payload_
 	},
 	"error": {
 		"code": "improper-payload",
-		"message": "Invalid value provided for field `algorithm`."
+		"message": "Invalid value provided for field `type`."
 	}
 }
 ```
@@ -848,15 +803,14 @@ Example:
 
 ```json
 {
-	"name": "Happy Inc",
+	"name": "Happy Template Issuer",
 	"template": {
-		"store": "https://example.edu/template-store/",
-		"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+		"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt"
 	},
 	"renderer": {
-		"uri": "https://example.edu/renderer/"
+		"api": "https://renderer.app"
 	},
-	"keys": ["oLrLoSxG8nNupXoNZD8fJ"]
+	"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 }
 ```
 
@@ -870,26 +824,15 @@ Example:
 		"status": 201
 	},
 	"data": {
-		"name": "Happy Inc",
-		"id": "WSJ6ZiU3tWjllJjHuA9mm",
+		"id": "did:web:issuer.app:applications:WSJ6ZiU3tWjllJjHuA9mm",
+		"name": "Happy Template Issuer",
 		"template": {
-			"store": "https://example.edu/template-store/",
-			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+			"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt"
 		},
 		"renderer": {
-			"uri": "https://example.edu/renderer/"
+			"api": "https://renderer.app"
 		},
-		"keys": [
-			{
-				"id": "oLrLoSxG8nNupXoNZD8fJ",
-				"uri": "https://example.edu/keys/public/1",
-				"name": "Example Key",
-				"algorithm": "rsa",
-				"size": 4096,
-				"created": "2022-06-28T04:29:59+05430",
-				"public": "..."
-			}
-		]
+		"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 	}
 }
 ```
@@ -958,26 +901,15 @@ Example:
 		"status": 200
 	},
 	"data": {
-		"id": "WSJ6ZiU3tWjllJjHuA9mm",
-		"name": "Happy Inc",
+		"id": "did:web:issuer.app:applications:WSJ6ZiU3tWjllJjHuA9mm",
+		"name": "Happy Template Issuer",
 		"template": {
-			"store": "https://example.edu/template-store/",
-			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+			"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt"
 		},
 		"renderer": {
-			"uri": "https://example.edu/renderer/"
+			"api": "https://renderer.app"
 		},
-		"keys": [
-			{
-				"id": "oLrLoSxG8nNupXoNZD8fJ",
-				"uri": "https://example.edu/keys/public/1",
-				"name": "Example Key",
-				"algorithm": "rsa",
-				"size": 4096,
-				"created": "2022-06-28T04:29:59+05430",
-				"public": "..."
-			}
-		]
+		"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 	}
 }
 ```
@@ -1014,7 +946,7 @@ Example:
 
 ```json
 {
-	"name": "Happy Co"
+	"name": "Happy Template Issuing Application"
 }
 ```
 
@@ -1028,16 +960,15 @@ Example:
 		"status": 200
 	},
 	"data": {
-		"name": "Happy Co",
-		"id": "WSJ6ZiU3tWjllJjHuA9mm",
+		"id": "did:web:issuer.app:applications:WSJ6ZiU3tWjllJjHuA9mm",
+		"name": "Happy Template Issuing Application",
 		"template": {
-			"store": "https://example.edu/template-store/",
-			"id": "PTqVo635KbGZXZ4KzUJV86iBpixt"
+			"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt"
 		},
 		"renderer": {
-			"uri": "https://example.edu/renderer/"
+			"api": "https://renderer.app"
 		},
-		"keys": []
+		"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 	}
 }
 ```
@@ -1140,23 +1071,19 @@ _Application Not Found_
 {
 	"credentials": [
 		{
-			"@context": [
-				"https://www.w3.org/2018/credentials/v1",
-				"https://www.w3.org/2018/credentials/examples/v1"
-			],
+			"@context": ["https://www.w3.org/2018/credentials/v1"],
 			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 			"type": ["VerifiableCredential", "IdentityCredential"],
-			"issuer": "https://example.edu/issuers/565049",
+			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 			"issuanceDate": "2010-01-01T19:23:24Z",
 			"credentialSubject": {
-				"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 				"name": "Happy"
 			},
 			"proof": {
-				"type": "RsaSignature2018",
+				"type": "Ed25519VerificationKey2020",
 				"created": "2017-06-18T21:19:10Z",
 				"proofPurpose": "assertionMethod",
-				"verificationMethod": "https://example.edu/issuers/565049#key-1",
+				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
 				"jws": "..."
 			}
 		}
@@ -1177,36 +1104,38 @@ Example:
 	"data": {
 		"certificate": "<svg ...",
 		"presentation": {
-			"@context": [
-				"https://www.w3.org/2018/credentials/v1",
-				"https://www.w3.org/2018/credentials/examples/v1"
-			],
-			"id": "did:example:mTvrhQMMf6KBEJFItejG0tpohz5U",
-			"holder": "did:example:tpohz5uFEJFIteq3jY7vaG4gROLb",
+			"@context": ["https://www.w3.org/2018/credentials/v1"],
+			"id": "did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0tpohz5U",
+			"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb",
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
-					"@context": [
-						"https://www.w3.org/2018/credentials/v1",
-						"https://www.w3.org/2018/credentials/examples/v1"
-					],
-					"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
+					"@context": ["https://www.w3.org/2018/credentials/v1"],
+					"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
 					"type": ["VerifiableCredential", "IdentityCredential"],
-					"issuer": "https://example.edu/issuers/565049",
+					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 					"issuanceDate": "2010-01-01T19:23:24Z",
 					"credentialSubject": {
-						"id": "did:example:Fibyu0uFoIHW7Eq3jY7v0rQs5OLb",
 						"name": "Happy"
 					},
 					"proof": {
-						"type": "RsaSignature2018",
+						"type": "Ed25519VerificationKey2020",
 						"created": "2017-06-18T21:19:10Z",
 						"proofPurpose": "assertionMethod",
-						"verificationMethod": "https://example.edu/issuers/565049#key-1",
+						"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
 						"jws": "..."
 					}
 				}
-			]
+			],
+			"proof": {
+				"type": "Ed25519VerificationKey2020",
+				"created": "2018-09-14T21:19:10Z",
+				"proofPurpose": "authentication",
+				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
+				"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
+				"domain": "4jt78h47fh47",
+				"jws": "..."
+			}
 		}
 	}
 }
