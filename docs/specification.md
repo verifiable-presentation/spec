@@ -1079,6 +1079,7 @@ _Application Not Found_
 | ----------- | --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
 | credentials | `array<object>` | `true`   | The credentials to use to create a presentation.                                                                           |
 | output      | `enum`          | `true`   | The format in which the presentation should be rendered. Can be whatever the render supports, e.g., `htm`, `svg` or `pdf`. |
+| holder      | `string`        | `true`   | The holder of the presentation.                                                                                            |
 
 ```json
 {
@@ -1101,7 +1102,8 @@ _Application Not Found_
 			}
 		}
 	],
-	"output": "svg"
+	"output": "svg",
+	"holder": "did:web:issuer.app:entities:tpohz5uFEJFIteq3jY7vaG4gROLb"
 }
 ```
 
