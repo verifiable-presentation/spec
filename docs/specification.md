@@ -797,6 +797,7 @@ _Key Is Used_
 | name     | `string`        | `true`   | The name of the application.                      |
 | template | `object`        | `true`   | The template store configuration.                 |
 | renderer | `object`        | `true`   | The renderer configuration.                       |
+| registry | `object`        | `true`   | The registry configuration.                       |
 | keys     | `array<string>` | `true`   | The list of Key IDs to use to sign presentations. |
 
 Example:
@@ -809,6 +810,9 @@ Example:
 	},
 	"renderer": {
 		"api": "https://renderer.app"
+	},
+	"registry": {
+		"api": "https://registry.app"
 	},
 	"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 }
@@ -831,6 +835,9 @@ Example:
 		},
 		"renderer": {
 			"api": "https://renderer.app"
+		},
+		"registry": {
+			"api": "https://registry.app"
 		},
 		"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 	}
@@ -909,6 +916,9 @@ Example:
 		"renderer": {
 			"api": "https://renderer.app"
 		},
+		"registry": {
+			"api": "https://registry.app"
+		},
 		"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 	}
 }
@@ -967,6 +977,9 @@ Example:
 		},
 		"renderer": {
 			"api": "https://renderer.app"
+		},
+		"registry": {
+			"api": "https://registry.app"
 		},
 		"keys": ["did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ"]
 	}
