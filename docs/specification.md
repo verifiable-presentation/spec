@@ -304,31 +304,32 @@ GET /presentations?holder=did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
-					"@context": ["https://www.w3.org/2018/credentials/v1"],
-					"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
-					"type": ["VerifiableCredential", "IdentityCredential"],
-					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+					"@context": [
+						"https://www.w3.org/2018/credentials/v1",
+						"https://w3id.org/security/suites/ed25519-2020/v1",
+						{ "name": "https://schema.org/name" }
+					],
+					"credentialSubject": { "name": "Happy" },
+					"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 					"issuanceDate": "2010-01-01T19:23:24Z",
-					"credentialSubject": {
-						"name": "Happy"
-					},
+					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+					"type": ["VerifiableCredential", "IdentityCredential"],
 					"proof": {
-						"type": "Ed25519VerificationKey2020",
-						"created": "2017-06-18T21:19:10Z",
+						"type": "Ed25519Signature2020",
+						"created": "2022-07-09T13:29:11Z",
+						"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 						"proofPurpose": "assertionMethod",
-						"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
-						"jws": "..."
+						"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 					}
 				}
 			],
 			"proof": {
-				"type": "Ed25519VerificationKey2020",
-				"created": "2018-09-14T21:19:10Z",
+				"challenge": "kkJYgVOYMtwONOkVTqmagEN48sOj",
+				"created": "2022-07-09T13:29:11Z",
 				"proofPurpose": "authentication",
-				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-				"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-				"domain": "4jt78h47fh47",
-				"jws": "..."
+				"proofValue": "z5BLQRLQcnoy6d2ZeKmXaTSbt9nCawmAhoMPnbL2z1K54HZvkNHnAosbzzbqPHv8ijYPc1HPQveGek5HwJy4oi3cn",
+				"type": "Ed25519Signature2020",
+				"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu"
 			}
 		}
 	]
@@ -349,31 +350,32 @@ GET /presentations?holder=did:web:issuer.app:presentations:mTvrhQMMf6KBEJFItejG0
 	"type": "VerifiablePresentation",
 	"verifiableCredential": [
 		{
-			"@context": ["https://www.w3.org/2018/credentials/v1"],
-			"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
-			"type": ["VerifiableCredential", "IdentityCredential"],
-			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+			"@context": [
+				"https://www.w3.org/2018/credentials/v1",
+				"https://w3id.org/security/suites/ed25519-2020/v1",
+				{ "name": "https://schema.org/name" }
+			],
+			"credentialSubject": { "name": "Happy" },
+			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 			"issuanceDate": "2010-01-01T19:23:24Z",
-			"credentialSubject": {
-				"name": "Happy"
-			},
+			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+			"type": ["VerifiableCredential", "IdentityCredential"],
 			"proof": {
-				"type": "Ed25519VerificationKey2020",
-				"created": "2017-06-18T21:19:10Z",
+				"type": "Ed25519Signature2020",
+				"created": "2022-07-09T13:29:11Z",
+				"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 				"proofPurpose": "assertionMethod",
-				"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
-				"jws": "..."
+				"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 			}
 		}
 	],
 	"proof": {
-		"type": "Ed25519VerificationKey2020",
-		"created": "2018-09-14T21:19:10Z",
+		"challenge": "kkJYgVOYMtwONOkVTqmagEN48sOj",
+		"created": "2022-07-09T13:29:11Z",
 		"proofPurpose": "authentication",
-		"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-		"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-		"domain": "4jt78h47fh47",
-		"jws": "..."
+		"proofValue": "z5BLQRLQcnoy6d2ZeKmXaTSbt9nCawmAhoMPnbL2z1K54HZvkNHnAosbzzbqPHv8ijYPc1HPQveGek5HwJy4oi3cn",
+		"type": "Ed25519Signature2020",
+		"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu"
 	}
 }
 ```
@@ -395,31 +397,32 @@ Example:
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
-					"@context": ["https://www.w3.org/2018/credentials/v1"],
-					"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
-					"type": ["VerifiableCredential", "IdentityCredential"],
-					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+					"@context": [
+						"https://www.w3.org/2018/credentials/v1",
+						"https://w3id.org/security/suites/ed25519-2020/v1",
+						{ "name": "https://schema.org/name" }
+					],
+					"credentialSubject": { "name": "Happy" },
+					"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 					"issuanceDate": "2010-01-01T19:23:24Z",
-					"credentialSubject": {
-						"name": "Happy"
-					},
+					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+					"type": [ "VerifiableCredential", "IdentityCredential" ],
 					"proof": {
-						"type": "Ed25519VerificationKey2020",
-						"created": "2017-06-18T21:19:10Z",
+						"type": "Ed25519Signature2020",
+						"created": "2022-07-09T13:29:11Z",
+						"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 						"proofPurpose": "assertionMethod",
-						"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
-						"jws": "..."
+						"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 					}
 				}
 			],
 			"proof": {
-				"type": "Ed25519VerificationKey2020",
-				"created": "2018-09-14T21:19:10Z",
-				"proofPurpose": "authentication",
-				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-				"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-				"domain": "4jt78h47fh47",
-				"jws": "..."
+					"challenge": "kkJYgVOYMtwONOkVTqmagEN48sOj",
+					"created": "2022-07-09T13:29:11Z",
+					"proofPurpose": "authentication",
+					"proofValue": "z5BLQRLQcnoy6d2ZeKmXaTSbt9nCawmAhoMPnbL2z1K54HZvkNHnAosbzzbqPHv8ijYPc1HPQveGek5HwJy4oi3cn",
+					"type": "Ed25519Signature2020",
+					"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu"
 			}
 		}
 	}
@@ -468,31 +471,32 @@ Example:
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
-				"@context": ["https://www.w3.org/2018/credentials/v1"],
-				"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
-				"type": ["VerifiableCredential", "IdentityCredential"],
-				"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+				"@context": [
+					"https://www.w3.org/2018/credentials/v1",
+					"https://w3id.org/security/suites/ed25519-2020/v1",
+					{ "name": "https://schema.org/name" }
+				],
+				"credentialSubject": { "name": "Happy" },
+				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"issuanceDate": "2010-01-01T19:23:24Z",
-				"credentialSubject": {
-					"name": "Happy"
-				},
+				"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+				"type": ["VerifiableCredential", "IdentityCredential"],
 				"proof": {
-					"type": "Ed25519VerificationKey2020",
-					"created": "2017-06-18T21:19:10Z",
+					"type": "Ed25519Signature2020",
+					"created": "2022-07-09T13:29:11Z",
+					"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 					"proofPurpose": "assertionMethod",
-					"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
-					"jws": "..."
+					"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 				}
 			}
 		],
 		"proof": {
-			"type": "Ed25519VerificationKey2020",
-			"created": "2018-09-14T21:19:10Z",
+			"challenge": "kkJYgVOYMtwONOkVTqmagEN48sOj",
+			"created": "2022-07-09T13:29:11Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-			"domain": "4jt78h47fh47",
-			"jws": "..."
+			"proofValue": "z5BLQRLQcnoy6d2ZeKmXaTSbt9nCawmAhoMPnbL2z1K54HZvkNHnAosbzzbqPHv8ijYPc1HPQveGek5HwJy4oi3cn",
+			"type": "Ed25519Signature2020",
+			"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu"
 		}
 	}
 }
@@ -534,31 +538,32 @@ _Presentation Not Found_
 	"type": "VerifiablePresentation",
 	"verifiableCredential": [
 		{
-			"@context": ["https://www.w3.org/2018/credentials/v1"],
-			"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
-			"type": ["VerifiableCredential", "IdentityCredential"],
-			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+			"@context": [
+				"https://www.w3.org/2018/credentials/v1",
+				"https://w3id.org/security/suites/ed25519-2020/v1",
+				{ "name": "https://schema.org/name" }
+			],
+			"credentialSubject": { "name": "Happy" },
+			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 			"issuanceDate": "2010-01-01T19:23:24Z",
-			"credentialSubject": {
-				"name": "Happy"
-			},
+			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+			"type": ["VerifiableCredential", "IdentityCredential"],
 			"proof": {
-				"type": "Ed25519VerificationKey2020",
-				"created": "2017-06-18T21:19:10Z",
+				"type": "Ed25519Signature2020",
+				"created": "2022-07-09T13:29:11Z",
+				"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 				"proofPurpose": "assertionMethod",
-				"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
-				"jws": "..."
+				"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 			}
 		}
 	],
 	"proof": {
-		"type": "Ed25519VerificationKey2020",
-		"created": "2018-09-14T21:19:10Z",
+		"challenge": "kkJYgVOYMtwONOkVTqmagEN48sOj",
+		"created": "2022-07-09T13:29:11Z",
 		"proofPurpose": "authentication",
-		"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-		"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-		"domain": "4jt78h47fh47",
-		"jws": "..."
+		"proofValue": "z5BLQRLQcnoy6d2ZeKmXaTSbt9nCawmAhoMPnbL2z1K54HZvkNHnAosbzzbqPHv8ijYPc1HPQveGek5HwJy4oi3cn",
+		"type": "Ed25519Signature2020",
+		"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu"
 	}
 }
 ```
@@ -579,31 +584,32 @@ Example:
 		"type": "VerifiablePresentation",
 		"verifiableCredential": [
 			{
-				"@context": ["https://www.w3.org/2018/credentials/v1"],
-				"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
-				"type": ["VerifiableCredential", "IdentityCredential"],
-				"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+				"@context": [
+					"https://www.w3.org/2018/credentials/v1",
+					"https://w3id.org/security/suites/ed25519-2020/v1",
+					{ "name": "https://schema.org/name" }
+				],
+				"credentialSubject": { "name": "Happy" },
+				"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 				"issuanceDate": "2010-01-01T19:23:24Z",
-				"credentialSubject": {
-					"name": "Happy"
-				},
+				"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+				"type": ["VerifiableCredential", "IdentityCredential"],
 				"proof": {
-					"type": "Ed25519VerificationKey2020",
-					"created": "2017-06-18T21:19:10Z",
+					"type": "Ed25519Signature2020",
+					"created": "2022-07-09T13:29:11Z",
+					"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 					"proofPurpose": "assertionMethod",
-					"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
-					"jws": "..."
+					"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 				}
 			}
 		],
 		"proof": {
-			"type": "Ed25519VerificationKey2020",
-			"created": "2018-09-14T21:19:10Z",
+			"challenge": "kkJYgVOYMtwONOkVTqmagEN48sOj",
+			"created": "2022-07-09T13:29:11Z",
 			"proofPurpose": "authentication",
-			"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-			"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-			"domain": "4jt78h47fh47",
-			"jws": "..."
+			"proofValue": "z5BLQRLQcnoy6d2ZeKmXaTSbt9nCawmAhoMPnbL2z1K54HZvkNHnAosbzzbqPHv8ijYPc1HPQveGek5HwJy4oi3cn",
+			"type": "Ed25519Signature2020",
+			"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu"
 		}
 	}
 }
@@ -1085,20 +1091,22 @@ _Application Not Found_
 {
 	"credentials": [
 		{
-			"@context": ["https://www.w3.org/2018/credentials/v1"],
+			"@context": [
+				"https://www.w3.org/2018/credentials/v1",
+				"https://w3id.org/security/suites/ed25519-2020/v1",
+				{ "name": "https://schema.org/name" }
+			],
+			"credentialSubject": { "name": "Happy" },
 			"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
-			"type": ["VerifiableCredential", "IdentityCredential"],
-			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
 			"issuanceDate": "2010-01-01T19:23:24Z",
-			"credentialSubject": {
-				"name": "Happy"
-			},
+			"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+			"type": ["VerifiableCredential", "IdentityCredential"],
 			"proof": {
-				"type": "Ed25519VerificationKey2020",
-				"created": "2017-06-18T21:19:10Z",
+				"type": "Ed25519Signature2020",
+				"created": "2022-07-09T13:29:11Z",
+				"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 				"proofPurpose": "assertionMethod",
-				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-				"jws": "..."
+				"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 			}
 		}
 	],
@@ -1125,31 +1133,32 @@ Example:
 			"type": "VerifiablePresentation",
 			"verifiableCredential": [
 				{
-					"@context": ["https://www.w3.org/2018/credentials/v1"],
-					"id": "did:web:issuer.app:credentials:F4RGIuxcKIjygFThqsXW9GX6HocV",
-					"type": ["VerifiableCredential", "IdentityCredential"],
-					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+					"@context": [
+						"https://www.w3.org/2018/credentials/v1",
+						"https://w3id.org/security/suites/ed25519-2020/v1",
+						{ "name": "https://schema.org/name" }
+					],
+					"credentialSubject": { "name": "Happy" },
+					"id": "did:example:F4RGIuxcKIjygFThqsXW9GX6HocV",
 					"issuanceDate": "2010-01-01T19:23:24Z",
-					"credentialSubject": {
-						"name": "Happy"
-					},
+					"issuer": "did:web:issuer.app:entities:oLrLuxcK8nNupXoNsXW9G",
+					"type": ["VerifiableCredential", "IdentityCredential"],
 					"proof": {
-						"type": "Ed25519VerificationKey2020",
-						"created": "2017-06-18T21:19:10Z",
+						"type": "Ed25519Signature2020",
+						"created": "2022-07-09T13:29:11Z",
+						"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu",
 						"proofPurpose": "assertionMethod",
-						"verificationMethod": "did:web:issuer.app:keys:Jf8DZNoXpuNn8GxSoLrLo",
-						"jws": "..."
+						"proofValue": "z5weBQmFAUeq8JVyfW5JuET89aBiK1HquiHCLv8yPAjYG91ohSLmetaddVdrhbWj71jKXg795Bapt5ba3dqwfTqzs"
 					}
 				}
 			],
 			"proof": {
-				"type": "Ed25519VerificationKey2020",
-				"created": "2018-09-14T21:19:10Z",
+				"challenge": "kkJYgVOYMtwONOkVTqmagEN48sOj",
+				"created": "2022-07-09T13:29:11Z",
 				"proofPurpose": "authentication",
-				"verificationMethod": "did:web:issuer.app:keys:oLrLoSxG8nNupXoNZD8fJ",
-				"challenge": "1f44d55f-f161-4938-a659-f8026467f126",
-				"domain": "4jt78h47fh47",
-				"jws": "..."
+				"proofValue": "z5BLQRLQcnoy6d2ZeKmXaTSbt9nCawmAhoMPnbL2z1K54HZvkNHnAosbzzbqPHv8ijYPc1HPQveGek5HwJy4oi3cn",
+				"type": "Ed25519Signature2020",
+				"verificationMethod": "did:web:issuer.app:keys:zF7T2UyK4dk0D1sJsHYuJ6gkmlhu"
 			}
 		}
 	}
