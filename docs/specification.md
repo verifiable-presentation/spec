@@ -58,8 +58,8 @@ Example:
 
 ```json
 {
-	"template": "Hello ${data.name}",
-	"renderer": "jstl",
+	"template": "Hello <strong><%= data.name %></strong>",
+	"renderer": "ejs",
 	"schema": {
 		"type": "object",
 		"properties": {
@@ -82,8 +82,8 @@ Example:
 	},
 	"data": {
 		"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt",
-		"template": "Hello ${data.name}",
-		"renderer": "jstl",
+		"template": "Hello <strong><%= data.name %></strong>",
+		"renderer": "ejs",
 		"schema": {
 			"type": "object",
 			"properties": {
@@ -147,8 +147,8 @@ Example:
 	},
 	"data": {
 		"id": "did:web:issuer.app:templates:PTqVo635KbGZXZ4KzUJV86iBpixt",
-		"template": "Hello ${data.name}",
-		"renderer": "jstl",
+		"template": "Hello <strong><%= data.name %></strong>",
+		"renderer": "ejs",
 		"schema": {
 			"type": "object",
 			"properties": {
@@ -196,8 +196,8 @@ Example:
 ```json
 {
 	"template": {
-		"template": "Hello ${data.name}",
-		"renderer": "jstl",
+		"template": "Hello <strong><%= data.name %></strong>",
+		"renderer": "ejs",
 		"schema": {
 			"type": "object",
 			"properties": {
